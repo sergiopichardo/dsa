@@ -1,5 +1,5 @@
 const compress = (word) => {
-    let result = ''; 
+    let result = []; 
     let slowPointer = 0; 
     let fastPointer = 0; 
 
@@ -9,15 +9,15 @@ const compress = (word) => {
         } else {
             const count = fastPointer - slowPointer; 
             if (count === 1) {
-                result += word[slowPointer]
+                result.push(word[slowPointer]);
             } else {
-                result += count + word[slowPointer]
+                result.push(count, word[slowPointer]);
             }
             slowPointer = fastPointer;
         }
     }
 
-    return result;
+    return result.join('');
 }
 
 
