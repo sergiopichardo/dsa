@@ -52,6 +52,10 @@ ALGORITHM
         - return [complementIndex, currentIndex]
     - otherwise 
         - set prop in lookup where key: currentNumber, and value: currentNumber's index
+
+COMPLEXITY
+- time: O(N)
+- space: O(1)
 */
 
 const pairSum = (numbers, targetSum) => {
