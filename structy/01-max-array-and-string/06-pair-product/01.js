@@ -42,7 +42,17 @@ N: the length of the array
 
 
 const pairProduct = (numbers, targetProduct) => {
+    const lookup = {}; 
 
+    for (let index = 0; index < numbers.length; index += 1) {
+        const currentNumber = numbers[index]; 
+        const complement = targetProduct / currentNumber; 
+        if (complement in lookup) {
+            return [lookup[complement], index];
+        } else {
+            lookup[currentNumber] = index; 
+        }
+    }
 };
 
 console.log(pairProduct([3, 2, 5, 4, 1], 8)); // -> [1, 3]
