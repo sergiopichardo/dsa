@@ -14,13 +14,9 @@ const reverseList = (current, prev=null) => {
 
     const next = current.next; // store rest of linked list
     current.next = prev; // reverse node reference
-
-    // advance linked list
-    prev = current;
-    current = next;
     
     // recursive case
-    return reverseList(current, prev)
+    return reverseList(next, current)
 };
 
 
