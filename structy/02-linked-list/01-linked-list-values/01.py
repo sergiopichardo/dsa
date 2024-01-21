@@ -23,7 +23,9 @@ ALGORITHM
 - RETURN the result list  
 
 COMPLEXITY 
-- 
+- N: Number of nodes 
+- Time: O(N) 
+- Space: O(N)
 """
 
 from typing import List
@@ -41,6 +43,17 @@ class Node:
 #         result.append(current_node.val)
 #         current_node = current_node.next
 #     return result
+
+# def linked_list_values(head):
+#   values = []
+#   _linked_list_values(head, values)
+#   return values
+
+# def _linked_list_values(head, values):
+#   if head is None:
+#     return
+#   values.append(head.val)
+#   _linked_list_values(head.next, values)
 
 def linked_list_values(head: Node, result: List[str] = None) -> List[str]:
     if result is None:
