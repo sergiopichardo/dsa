@@ -9,14 +9,27 @@ class Node:
         self.next = None
 
 
+# def is_univalue_list(head):
+#     target_value = head.val
+#     current_node = head.next
+#     while current_node is not None:
+#         if target_value != current_node.val:
+#             return False
+#         current_node = current_node.next
+#     return True
+
 def is_univalue_list(head):
-    target_value = head.val
-    current_node = head.next
-    while current_node is not None:
-        if target_value != current_node.val:
-            return False
-        current_node = current_node.next
-    return True
+    # Base case: if the list is empty or we've reached the end of the list
+    if head is None or head.next is None:
+        return True
+
+    # Check the value of the next node
+    if head.val != head.next.val:
+        return False
+
+    # Recursive call for the rest of the list
+    return is_univalue_list(head.next)
+
 
 
 a = Node(7)
