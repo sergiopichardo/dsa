@@ -107,7 +107,7 @@ class Node:
 
 #     while current_node is not None:
 #         if current_node.val == target_val:
-#             prev_node.next = current_node.next
+#             prev_node.next = current_node.next 
 #             break
 #         prev_node = current_node
 #         current_node = current_node.next 
