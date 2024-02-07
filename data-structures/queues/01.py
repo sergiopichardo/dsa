@@ -5,12 +5,10 @@ class Queue(object):
         self.items = []
 
     def enqueue(self, item) -> None:
-        self.items.append(item)
+        self.items.insert(0, item)
 
     def dequeue(self) -> Any:
-        front_item = self.items[0]
-        self.items = self.items[1:]
-        return front_item
+        return self.items.pop()
 
     def isEmpty(self) -> bool:
         return self.size() == 0
@@ -27,7 +25,8 @@ queue.enqueue(1)
 queue.enqueue(2)
 queue.enqueue(3)
 
-# queue: ['A', 'B', 'C', 1, 2, 3]
+#        rear               front
+# queue: [3, 2, 1, 'C', 'B', 'A']
 
 print(queue.size())  # 6
 print(queue.isEmpty())  # False 
