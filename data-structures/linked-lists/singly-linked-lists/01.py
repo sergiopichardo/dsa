@@ -35,6 +35,7 @@ Size:
 Utility Operations:
 - [ ] Empty the list: Remove all nodes from the list, effectively clearing it.
 - [ ] Check if the list is empty: Determine if the list has no nodes.
+- [ ] Print linked list: To show the underlying structure
 """
 
 
@@ -42,7 +43,6 @@ class Node(object):
     def __init__(self, value) -> None:
         self.value = value
         self.next = None
-
 
 # Singly Linked List
 a = Node('a')
