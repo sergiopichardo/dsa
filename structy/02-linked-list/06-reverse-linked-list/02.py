@@ -18,6 +18,11 @@ while the current_node is not None
     prev_node = current_node
     set current_node to next_node
 return head
+
+COMPLEXITY
+N - LL length
+Time: O(N)
+Space: O(1)
 """
 
 def print_ll(head):
@@ -33,15 +38,28 @@ class Node:
         self.val = val
         self.next = None
 
-def reverse_list(head: None):
-    prev_node = None
-    current_node = head 
-    while current_node is not None:
-        next_node = current_node.next 
-        current_node.next = prev_node
-        prev_node = current_node
-        current_node = next_node
-    return prev_node
+# def reverse_list(head: None):
+#     prev_node = None
+#     current_node = head 
+#     while current_node is not None:
+#         next_node = current_node.next 
+#         current_node.next = prev_node
+#         prev_node = current_node
+#         current_node = next_node
+#     return prev_node
+
+
+# N: length of LL
+# time: O(N)
+# space: O(N)
+def reverse_list(head: Node, prev: Node = None):
+    if head is None:
+        return prev
+    next_node = head.next
+    head.next = prev
+    prev = head
+    return reverse_list(next_node, prev)
+
 
 a = Node("a")
 b = Node("b")
