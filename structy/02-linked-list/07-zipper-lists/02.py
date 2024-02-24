@@ -94,7 +94,7 @@ class Node:
         self.val = val
         self.next = None
 
-def zipper_lists(head_1: Node, head_2: Node):
+def zipper_lists_iterative(head_1: Node, head_2: Node):
     previous = head_1
     current_node_1 = head_1.next
     current_node_2 = head_2
@@ -119,6 +119,35 @@ def zipper_lists(head_1: Node, head_2: Node):
 
 
 ## Recursive solution 
+def zipper_lists(head_1: Node, head_2: Node):
+    # it means both lists are empty, return None.
+    if head_1 is None and head_2 is None:
+        return None
+    
+    # if head_1 is None (meaning the first list is empty)
+    # return head_2, effectively adding the remaining elements of the second list to the zipped list.
+    if head_1 is None:
+        return head_2
+    # If head_2 is None (meaning the second list is empty)
+    # return head_1, effectively adding the remaining elements of the first list to the zipped list.
+    if head_2 is None:
+        return head_1
+    
+    # Save the next elements of head_1 and head_2 in next_1 and next_2 respectively. This is necessary because the next step (head_1.next = head) alters the next pointers and we'd lose the refers to the rest of the linked list
+    next_1 = head_1.next
+    next_2 = head_2.next
+
+    # Set the next pointer of head_1 to head_2, effectively inserting head_2 after head_1 in the list.
+    head_1.next = head_2
+
+    # It then calls itself (zipper_lists) with next_1 and next_2 as the new heads. This recursive call will continue the process of alternating elements from each list.
+    # The next pointer of head_2 is set to the result of the recursive call. This ensures that the zipping continues from this point onward.
+    head_2.next = zipper_lists(next_1, next_2)
+    # Finally, it returns head_1, which is now the head of the partially (or fully) zipped list.
+    return head_1
+
+
+
 
 
 def print_ll(node: Node):
