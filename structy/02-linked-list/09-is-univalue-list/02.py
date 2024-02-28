@@ -31,9 +31,20 @@ ALGORITHM
         - RETURN FALSE
     - advance to the next node
 - RETURN TRUE 
+
+COMPLEXITY (iterative)
+- N: Length of linked list 
+- Time: O(N)
+- Space: O(1)
+
+COMPLEXITY (recursive)
+- N: Length of linked list 
+- Time: O(N)
+- Space: O(1)
 """
 
 from typing import Any
+
 
 class Node:
     def __init__(self, val: Any) -> None:
@@ -44,7 +55,7 @@ class Node:
 def is_univalue_list(head: Node) -> bool:
     if head.next is None:
         return True
-    
+
     compare_node = head
     current_node = head.next
     while current_node is not None:
@@ -53,6 +64,34 @@ def is_univalue_list(head: Node) -> bool:
         current_node = current_node.next
     return True
 
+
+def is_univalue_list_recursive(head: Node):
+    if head is None:
+        return True
+
+    if (head and head.next) and head.val != head.next.val:
+        return False
+
+    return is_univalue_list_recursive(head.next)
+
+
+# other solutions
+# def is_univalue_list(head):
+#     current = head
+#     while current is not None:
+#         if current.val != head.val:
+#             return False
+#         current = current.next
+#     return True
+
+
+# def is_univalue_list(head, prev_val=None):
+#     if head is None:
+#         return True
+#     if prev_val is None or head.val == prev_val:
+#         return is_univalue_list(head.next, head.val)
+#     else:
+#         return False
 
 
 a = Node(7)
@@ -63,7 +102,7 @@ a.next = b
 b.next = c
 
 # 7 -> 7 -> 7
-print(is_univalue_list(a)) # True
+print(is_univalue_list_recursive(a))  # True
 
 
 a = Node(7)
@@ -74,7 +113,7 @@ a.next = b
 b.next = c
 
 # 7 -> 7 -> 4
-print(is_univalue_list(a)) # False
+print(is_univalue_list_recursive(a))  # False
 
 
 u = Node(2)
@@ -90,7 +129,7 @@ x.next = y
 
 # 2 -> 2 -> 2 -> 2 -> 2
 
-print(is_univalue_list(u)) # True
+print(is_univalue_list_recursive(u))  # True
 u = Node(2)
 v = Node(2)
 w = Node(3)
@@ -103,12 +142,12 @@ w.next = x
 x.next = y
 
 # 2 -> 2 -> 3 -> 3 -> 2
-print(is_univalue_list(u)) # False
+print(is_univalue_list_recursive(u))  # False
 
-z = Node('z')
+z = Node("z")
 # z
 
-print(is_univalue_list(z)) # True
+print(is_univalue_list_recursive(z))  # True
 
 
 u = Node(2)
@@ -123,4 +162,4 @@ w.next = x
 x.next = y
 
 # 2 -> 1 -> 2 -> 2 -> 2
-print(is_univalue_list(u)) # False
+print(is_univalue_list_recursive(u))  # False
