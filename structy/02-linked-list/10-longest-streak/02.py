@@ -80,26 +80,47 @@ class Node:
         self.next = None
 
 
-def longest_streak(head: Node):
-    if head is None: 
-        return 0
+# def longest_streak(head: Node):
+#     if head is None: 
+#         return 0
     # if head is not None and head.next is None:
     #     return 1
     
-    max_streak = 1
-    current_streak = 1
-    previous_node = head
-    current_node = head.next
+    # max_streak = 1
+    # current_streak = 1
+    # previous_node = head
+    # current_node = head.next
 
+    # while current_node is not None:
+    #     if previous_node.val == current_node.val:
+    #         current_streak += 1
+    #         if current_streak > max_streak: 
+    #             max_streak = current_streak
+    #     else:
+    #         current_streak = 1
+            
+    #     previous_node = current_node
+    #     current_node = current_node.next
+
+    # return max_streak
+
+# alternative solution
+def longest_streak(head: Node):
+    max_streak = 0
+    current_streak = 0
+    prev_val = None
+
+    current_node = head
     while current_node is not None:
-        if previous_node.val == current_node.val:
+        if current_node.val == prev_val:
             current_streak += 1
-            if current_streak > max_streak: 
-                max_streak = current_streak
         else:
             current_streak = 1
-            
-        previous_node = current_node
+
+        prev_val = current_node.val 
+        if current_streak > max_streak:
+            max_streak = current_streak
+
         current_node = current_node.next
 
     return max_streak
