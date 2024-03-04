@@ -68,6 +68,28 @@ def remove_node(head: Node, target: Any):
     
     return head
 
+# N - length of LL 
+# time: O(N)
+# Space: O(N)
+def remove_node_recursive(head: Node, target: Any):
+    # If the head (current node) is None, it means we've reached the end of the list without finding the target.
+    if head is None: 
+        return None
+
+    # If the current node's value matches the target, 
+    # skip this node by returning the next node to the previous call.
+    if head.val == target:
+        return head.next
+    
+    # Recursively call the function on the next node, 
+    # which will return the modified list starting from the next node.
+    head.next = remove_node_recursive(head.next, target)
+
+    # Return the current head to link the modified list correctly.
+    return head
+
+
+
 def print_list(node: Node):
     result = []
 
@@ -93,51 +115,51 @@ d.next = e
 e.next = f
 
 # a -> b -> c -> d -> e -> f
-print_list(remove_node(a, "c"))
+print_list(remove_node_recursive(a, "c"))
 # # a -> b -> d -> e -> f
 
 
-x = Node("x")
-y = Node("y")
-z = Node("z")
+# x = Node("x")
+# y = Node("y")
+# z = Node("z")
 
-x.next = y
-y.next = z
+# x.next = y
+# y.next = z
 
-# x -> y -> z
-print_list(remove_node(x, "z"))
-# x -> y
-
-
-
-q = Node("q")
-r = Node("r")
-s = Node("s")
-
-q.next = r
-r.next = s
-
-# q -> r -> s
-print_list(remove_node(q, "q"))
-# r -> s
+# # x -> y -> z
+# print_list(remove_node(x, "z"))
+# # x -> y
 
 
-node1 = Node("h")
-node2 = Node("i")
-node3 = Node("j")
-node4 = Node("i")
 
-node1.next = node2
-node2.next = node3
-node3.next = node4
+# q = Node("q")
+# r = Node("r")
+# s = Node("s")
 
-# h -> i -> j -> i
-print_list(remove_node(node1, "i"))
-# h -> j -> i
+# q.next = r
+# r.next = s
+
+# # q -> r -> s
+# print_list(remove_node(q, "q"))
+# # r -> s
 
 
-t = Node("t")
+# node1 = Node("h")
+# node2 = Node("i")
+# node3 = Node("j")
+# node4 = Node("i")
 
-# t
-print_list(remove_node(t, "t"))
-# None
+# node1.next = node2
+# node2.next = node3
+# node3.next = node4
+
+# # h -> i -> j -> i
+# print_list(remove_node(node1, "i"))
+# # h -> j -> i
+
+
+# t = Node("t")
+
+# # t
+# print_list(remove_node(t, "t"))
+# # None
