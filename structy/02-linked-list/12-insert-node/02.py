@@ -81,7 +81,7 @@ def insert_node(head: Node, value: Any, index: int):
         return new_node
 
     while current_node is not None:
-        if counter == index - 1:
+        if counter == index - 1: # index will never be -1 cause we already handled the case where insertion is at the heads position 
             next_node = current_node.next
             new_node.next = next_node
             current_node.next = new_node 
@@ -89,6 +89,29 @@ def insert_node(head: Node, value: Any, index: int):
         current_node = current_node.next
         counter += 1
     return head 
+
+# COMPLEXITY (Recursive)
+# N: Length of LL
+# Time: O(N)
+# Space: O(N)
+def insert_node_recursive(head: Node, value: Any, index: int, counter: int = 0):
+    if head is None: 
+        return None
+    
+    if index == 0:
+        new_node = Node(value)
+        new_node.next = head
+        return new_node
+    
+    if counter == index - 1:
+        new_node = Node(value)
+        next_node = head.next
+        new_node.next = next_node
+        head.next = new_node
+    else:
+        insert_node_recursive(head.next, value, counter + 1)
+
+    return head
 
 
 def print_linked_list(current_node):
@@ -117,7 +140,7 @@ print_linked_list(insert_node(a, 'x', 2))
 
 
 
-
+# 
 
 a = Node("a")
 b = Node("b")
