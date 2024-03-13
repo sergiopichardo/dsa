@@ -37,8 +37,8 @@ def depth_first_values(root: Node):
 # n = number of nodes
 # Time: O(n^2)
 # Space: O(n)
-def depth_first_values_recursive(root: Node):
-    if root is None:
+def depth_first_values_recursive(root):
+    if not root:
         return []
     
     left_values = depth_first_values_recursive(root.left)
