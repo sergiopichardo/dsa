@@ -5,7 +5,7 @@ Write a function, depth_first_values, that takes in the root of a binary tree. T
 Hey. This is our first binary tree problem, so you should be liberal with watching the Approach and Walkthrough. Be productive, not stubborn. -AZ
 """
 
-
+from typing import List, Any
 
 class Node:
     def __init__(self, val):
@@ -13,6 +13,9 @@ class Node:
         self.left = None
         self.right = None
 
+# n = number of nodes
+# Time: O(n)
+# Space: O(n)
 def depth_first_values(root: Node):
     if root is None:
         return []
@@ -29,6 +32,19 @@ def depth_first_values(root: Node):
         if current.left is not None:
             stack.append(current.left)
     return values
+
+
+# n = number of nodes
+# Time: O(n^2)
+# Space: O(n)
+def depth_first_values_recursive(root: Node):
+    if root is None:
+        return []
+    
+    left_values = depth_first_values_recursive(root.left)
+    right_values = depth_first_values_recursive(root.right)
+    # return [root.val] +  left_values + right_values
+    return [root.val, *left_values, *right_values]
 
 
 
