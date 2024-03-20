@@ -11,23 +11,33 @@ class Node:
         self.right = None
 
 
-def breadth_first_values(root):
+# def breadth_first_values(root):
+#     if root is None:
+#         return []
+
+#     queue = [root]
+#     values = []
+
+#     while queue:
+#         current = queue.pop(0)
+#         values.append(current.val)
+
+#         if current.left:
+#             queue.append(current.left)
+#         if current.right:
+#             queue.append(current.right)
+
+#     return values        
+
+def depth_first_values(root):
     if root is None:
         return []
+    
+    left_values = depth_first_values(root.left) # [b, d, e]
+    right_values = depth_first_values(root.right) # [c, f]
+    
+    return [ root.val, *left_values, *right_values ]
 
-    queue = [root]
-    values = []
-
-    while queue:
-        current = queue.pop(0)
-        values.append(current.val)
-
-        if current.left:
-            queue.append(current.left)
-        if current.right:
-            queue.append(current.right)
-
-    return values        
 
 
 
