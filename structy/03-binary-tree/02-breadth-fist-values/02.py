@@ -3,6 +3,7 @@ breadth first values
 Write a function, breadth_first_values, that takes in the root of a binary tree. The function should return a list containing all values of the tree in breadth-first order.
 """
 
+from collections import deque # a deque is a double-ended queue
 
 class Node:
     def __init__(self, val):
@@ -11,35 +12,23 @@ class Node:
         self.right = None
 
 
-# def breadth_first_values(root):
-#     if root is None:
-#         return []
-
-#     queue = [root]
-#     values = []
-
-#     while queue:
-#         current = queue.pop(0)
-#         values.append(current.val)
-
-#         if current.left:
-#             queue.append(current.left)
-#         if current.right:
-#             queue.append(current.right)
-
-#     return values        
-
-def depth_first_values(root):
+def breadth_first_values(root):
     if root is None:
         return []
-    
-    left_values = depth_first_values(root.left) # [b, d, e]
-    right_values = depth_first_values(root.right) # [c, f]
-    
-    return [ root.val, *left_values, *right_values ]
 
+    queue = deque([root])
+    values = []
 
+    while queue:
+        current = queue.popleft()
+        values.append(current.val)
 
+        if current.left:
+            queue.append(current.left)
+        if current.right:
+            queue.append(current.right)
+
+    return values        
 
 
 a = Node("a")
